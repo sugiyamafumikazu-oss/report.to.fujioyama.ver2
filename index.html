@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>山﨑氏に関する労務対応見解書</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background-color: #f8fafc;
+  }
+  .chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    height: 300px;
+    max-height: 400px;
+  }
+  @media (min-width: 768px) {
+    .chart-container {
+      height: 350px;
+    }
+  }
+  .section-content {
+    display: none;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  .section-content.active {
+    display: block;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .nav-btn.active {
+    background-color: #e2e8f0;
+    color: #0f172a;
+    font-weight: bold;
+    border-left: 4px solid #0f172a;
+  }
+  .glass-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  .step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 9999px;
+    background-color: #1e293b;
+    color: white;
+    font-size: 0.875rem;
+    font-weight: bold;
+    margin-right: 0.5rem;
+  }
+</style>
+</head>
+<body class="text-slate-800 h-screen overflow-hidden flex flex-col md:flex-row">
+
+  <nav class="bg-slate-900 text-slate-300 w-full md:w-72 flex-shrink-0 flex flex-col z-10 shadow-xl overflow-y-auto">
+    <div class="p-6 bg-slate-950">
+      <div class="text-xl font-bold text-white mb-2">⚖️ 労務対応見解書</div>
+      <div class="text-sm text-slate-400">株式会社ふじおやま 御中</div>
+      <div class="text-xs text-slate-500 mt-1" id="current-date"></div>
+    </div>
+    
+    <div class="flex-1 py-4 flex flex-col gap-1 px-3">
+      <button onclick="switchSection('summary')" id="nav-summary" class="nav-btn active text-left px-4 py-3 rounded transition-colors text-sm flex items-center gap-3 hover:bg-slate-800 hover:text-white">
+        <span>📋</span> 要約・サマリー
+      </button>
+      <button onclick="switchSection('strategy')" id="nav-strategy" class="nav-btn text-left px-4 py-3 rounded transition-colors text-sm flex items-center gap-3 hover:bg-slate-800 hover:text-white">
+        <span>🧭</span> 対応方針の転換
+      </button>
+      <button onclick="switchSection('rules')" id="nav-rules" class="nav-btn text-left px-4 py-3 rounded transition-colors text-sm flex items-center gap-3 hover:bg-slate-800 hover:text-white">
+        <span>📖</span> 根拠となる就業規則
+      </button>
+      <button onclick="switchSection('leave')" id="nav-leave" class="nav-btn text-left px-4 py-3 rounded transition-colors text-sm flex items-center gap-3 hover:bg-slate-800 hover:text-white">
+        <span>📊</span> 休職期間の状況
+      </button>
+      <button onclick="switchSection('actions')" id="nav-actions" class="nav-btn text-left px-4 py-3 rounded transition-colors text-sm flex items-center gap-3 hover:bg-slate-800 hover:text-white">
+        <span>💡</span> 具体的な進行手順
+      </button>
+    </div>
+    
+    <div class="p-6 border-t border-slate-800 text-xs text-slate-400">
+      担当: 社会保険労務士<br>
+      杉山 文和<br>
+      <span class="mt-2 block">山﨑氏事案に関する法的見解</span>
+    </div>
+  </nav>
+
+  <main class="flex-1 overflow-y-auto bg-slate-50 p-6 md:p-10 relative">
+    
+    <section id="summary" class="section-content active max-w-4xl mx-auto">
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold text-slate-900 mb-2">事案要約：山﨑幸代氏への対応方針</h1>
+        <p class="text-slate-600 leading-relaxed">
+          本セクションでは、山﨑氏の休業要求に対する会社側の対応戦略の全体像を示します。申告の「虚偽性」を直接追求するのではなく、客観的証拠の提出要求を起点とした、より安全で確実な手続きへの移行をご提案します。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="glass-card p-6 border-t-4 border-slate-700 rounded-lg">
+          <div class="text-slate-700 font-bold mb-2 flex items-center gap-2"><span>1️⃣</span> 第一段階</div>
+          <p class="text-sm font-bold mb-1">客観的証明の要求</p>
+          <p class="text-xs text-slate-600">休業の根拠となる「医師の診断書等」の提出を期限を設けて正式に命じます。</p>
+        </div>
+        <div class="glass-card p-6 border-t-4 border-blue-600 rounded-lg">
+          <div class="text-blue-600 font-bold mb-2 flex items-center gap-2"><span>2️⃣</span> 分岐ルートA</div>
+          <p class="text-sm font-bold mb-1">診断書が提出された場合</p>
+          <p class="text-xs text-slate-600">休職上限期間到達を理由に、「期間満了による自然退職」の手続きを進めます。</p>
+        </div>
+        <div class="glass-card p-6 border-t-4 border-red-600 rounded-lg">
+          <div class="text-red-600 font-bold mb-2 flex items-center gap-2"><span>3️⃣</span> 分岐ルートB</div>
+          <p class="text-sm font-bold mb-1">診断書が提出されない場合</p>
+          <p class="text-xs text-slate-600">業務命令違反および無断欠勤として、就業規則に基づく「懲戒処分」を検討します。</p>
+        </div>
+      </div>
+      
+      <div class="bg-blue-50 p-6 rounded-xl border border-blue-100">
+        <h3 class="font-bold text-blue-900 mb-2">💡 基本方針の要旨</h3>
+        <p class="text-sm text-blue-800 leading-relaxed">
+          現時点では申告が虚偽であるか否かの断定が難しいため、「不正な申告」の追及に固執せず、<strong>正規の手続き（証拠の提出）を粛々と求めること</strong>が、会社としてのリスクを最小限に抑える最善の策となります。
+        </p>
+      </div>
+    </section>
+
+    <section id="strategy" class="section-content max-w-4xl mx-auto">
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold text-slate-900 mb-2">対応方針の転換について</h2>
+        <p class="text-slate-600 leading-relaxed">
+          本セクションでは、なぜ「虚偽の追求」から「手続きに基づく処理」へ方針を転換するべきなのか、その法務的根拠と実務上のメリットを解説します。
+        </p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden mb-6">
+        <div class="p-6 border-b border-slate-100 bg-slate-50 flex items-center justify-between">
+          <h3 class="font-bold text-lg text-slate-800">虚偽性の立証の困難さとリスク</h3>
+          <span class="text-xs bg-slate-200 text-slate-600 px-2 py-1 rounded font-bold">現状分析</span>
+        </div>
+        <div class="p-6">
+          <p class="text-sm text-slate-700 leading-relaxed mb-4">
+            山﨑氏の「傷害を受けた」という申告が虚偽であるか否かについて、警察の介入がない以上、会社が独自に「完全な虚偽である」と断定することは、後の紛争リスク（不当処分としての訴え等）を残す可能性があります。
+          </p>
+          <div class="bg-amber-50 border-l-4 border-amber-400 p-4">
+            <p class="text-sm text-amber-800 font-bold mb-1">安全確実なアプローチへの移行</p>
+            <p class="text-xs text-amber-700 leading-relaxed">
+              申告内容の真偽を会社が判断するのではなく、<strong>「休業を主張する以上、規定に基づく客観的証明（診断書等）を提出する義務がある」</strong>という、就業規則上のプロセスを徹底させます。これにより、会社は客観的な事実（提出の有無）のみに基づいて次の法的措置（自然退職または懲戒）へ進むことが可能となります。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="rules" class="section-content max-w-4xl mx-auto">
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold text-slate-900 mb-2">適用すべき就業規則の条文</h2>
+        <p class="text-slate-600 leading-relaxed">
+          本セクションでは、今回のアプローチの根拠となる就業規則の条文を整理します。会社からの通知や処分は、すべて以下の条文に基づいて行われます。
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+          <h3 class="font-bold text-slate-800 mb-3 border-b pb-2 flex justify-between">
+            <span>1. 診断書の提出要求の根拠</span>
+            <span class="text-sm text-blue-600">第39条</span>
+          </h3>
+          <p class="font-mono bg-slate-50 p-3 rounded text-slate-700 text-sm mb-2 border border-slate-100">
+            <strong>第39条第2項（休職等の手続き）関連条文の適用</strong><br>
+            傷病による休業（休職）を要求する従業員に対し、傷病の状況、復職までの期間等について記載された医師の診断書の提出を命じる。
+          </p>
+          <p class="text-xs text-slate-600">診断書等の客観的な証明が提出されない限り、会社として休業を認める正当な理由はありません。</p>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+          <h3 class="font-bold text-slate-800 mb-3 border-b pb-2 flex justify-between">
+            <span>2. 診断書未提出・出勤拒否に対する懲戒の根拠</span>
+            <span class="text-sm text-red-600">第56条</span>
+          </h3>
+          <p class="font-mono bg-slate-50 p-3 rounded text-slate-700 text-sm mb-2 border border-slate-100">
+            <strong>第56条（懲戒の事由）第1項</strong><br>
+            ① 正当な理由なく無断で遅刻、早退、又は欠勤をしたとき<br>
+            ⑤ 正当な理由なく職務上の指揮命令に従わないとき
+          </p>
+          <p class="text-xs text-slate-600">客観的証拠の提出要求（業務命令）に従わず、会社が休業を認めない中で欠勤を継続した場合、虚偽であるか否かに関わらず、上記違反として処分の対象となります。</p>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+          <h3 class="font-bold text-slate-800 mb-3 border-b pb-2 flex justify-between">
+            <span>3. 休職期間満了による退職の根拠</span>
+            <span class="text-sm text-slate-600">第40条</span>
+          </h3>
+          <p class="font-mono bg-slate-50 p-3 rounded text-slate-700 text-sm mb-2 border border-slate-100">
+            <strong>第40条第3項（休職期間の満了）</strong><br>
+            休職期間満了時においても休職事由が消滅しないときは、満了の日をもって自然退職とする。
+          </p>
+          <p class="text-xs text-slate-600">もし診断書が提出されたとしても、後述の通り直近2年間の通算ルールにより休職上限に達しているため、この条文を適用して退職手続きを進めます。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="leave" class="section-content max-w-4xl mx-auto">
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold text-slate-900 mb-2">休職期間の状況と自然退職要件</h2>
+        <p class="text-slate-600 leading-relaxed">
+          診断書が提出された場合に適用する「自然退職」の客観的根拠として、山﨑氏の休職期間消化状況を可視化します。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 flex flex-col justify-center items-center">
+          <h3 class="font-bold text-slate-800 mb-4 text-center">通算休職期間の消化状況<br><span class="text-sm font-normal text-slate-500">（直近2年間通算）</span></h3>
+          <div class="chart-container">
+            <canvas id="leaveChart"></canvas>
+          </div>
+        </div>
+
+        <div class="flex flex-col justify-center space-y-6">
+          <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+            <h3 class="font-bold text-slate-800 mb-2">状況の整理</h3>
+            <p class="text-sm text-slate-700 leading-relaxed">
+              勤怠記録等の確認により、山﨑氏は直近2年間において、就業規則の通算ルールに基づき<strong>すでに休職期間の上限（1年間）に完全に達している状態</strong>です。
+            </p>
+          </div>
+          
+          <div class="bg-blue-50 p-6 rounded-xl border border-blue-200">
+            <h3 class="font-bold text-blue-900 mb-2">自然退職の適用</h3>
+            <p class="text-sm text-blue-800 leading-relaxed">
+              したがって、仮に同氏から診断書が提出され、休業事由が存在することが証明されたとしても、すでに休職枠は残っていません。「休職期間満了時においても休職事由が消滅しないとき」に該当するため、第40条第3項に基づき、<strong>期間満了をもって自然退職</strong>となります。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="actions" class="section-content max-w-4xl mx-auto">
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold text-slate-900 mb-2">会社としての具体的な進行手順</h2>
+        <p class="text-slate-600 leading-relaxed">
+          以上の検討を踏まえ、株式会社ふじおやま様において直ちに実行すべき具体的なアクションプランをご提案します。
+        </p>
+      </div>
+
+      <div class="relative border-l-2 border-slate-200 ml-3 md:ml-6 space-y-8 pb-8">
+        
+        <div class="relative pl-8">
+          <div class="absolute w-6 h-6 bg-slate-800 rounded-full text-white flex items-center justify-center text-xs font-bold left-[-13px] top-1 border-4 border-slate-50">1</div>
+          <h3 class="font-bold text-lg text-slate-900 mb-2">診断書等の提出要求（書面通知）</h3>
+          <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+            <p class="text-sm text-slate-700 mb-3">
+              山﨑氏に対し、就業規則第39条第2項に基づき、以下の内容を記載した書面を内容証明等で送付し、明確な提出期限を定めます。
+            </p>
+            <ul class="text-sm text-slate-600 list-disc pl-5 space-y-1">
+              <li>傷害を理由とする休業を求める以上、それを客観的に証明する医師の診断書の提出を命じること。</li>
+              <li>提出がない場合、会社として休業は一切認めないこと。</li>
+              <li>期限までに提出せず欠勤を継続した場合は、無断欠勤および業務命令違反として取り扱うこと。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="relative pl-8">
+          <div class="absolute w-6 h-6 bg-slate-300 rounded-full text-slate-700 flex items-center justify-center text-xs font-bold left-[-13px] top-1 border-4 border-slate-50">2</div>
+          <h3 class="font-bold text-lg text-slate-900 mb-2">提出状況に応じた分岐対応</h3>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-l-4 border-blue-500">
+              <h4 class="font-bold text-blue-800 mb-2 flex items-center gap-2"><span>ルートA:</span> 提出された場合</h4>
+              <p class="text-sm text-slate-700 mb-3">
+                客観的な休業事由が存在することが確認されますが、前述の通り休職期間はすでに上限に達しています。
+              </p>
+              <div class="bg-slate-50 p-3 rounded border border-slate-200 text-sm">
+                <strong>対応:</strong><br>
+                就業規則第40条第3項を適用し、「休職期間満了による自然退職」の手続きを粛々と進め、退職通知を送付します。
+              </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-l-4 border-red-500">
+              <h4 class="font-bold text-red-800 mb-2 flex items-center gap-2"><span>ルートB:</span> 提出されない場合</h4>
+              <p class="text-sm text-slate-700 mb-3">
+                正当な理由の証明がないまま出勤を拒否している状態が確定します。
+              </p>
+              <div class="bg-slate-50 p-3 rounded border border-slate-200 text-sm">
+                <strong>対応:</strong><br>
+                就業規則第56条第1項⑤（指揮命令違反）および同①（無断欠勤）に該当するとして、懲戒処分のための手続き（弁明の機会の付与等）を開始します。
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+<script>
+  let chartInstance = null;
+
+  function initApp() {
+    const today = new Date();
+    document.getElementById('current-date').innerText = today.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' });
+  }
+
+  function switchSection(sectionId) {
+    document.querySelectorAll('.section-content').forEach(el => {
+      el.classList.remove('active');
+    });
+    
+    document.querySelectorAll('.nav-btn').forEach(el => {
+      el.classList.remove('active');
+      el.classList.add('text-slate-300');
+    });
+
+    document.getElementById(sectionId).classList.add('active');
+    
+    const activeBtn = document.getElementById('nav-' + sectionId);
+    activeBtn.classList.add('active');
+    activeBtn.classList.remove('text-slate-300');
+
+    if (sectionId === 'leave') {
+      renderLeaveChart();
+    }
+  }
+
+  function renderLeaveChart() {
+    const ctx = document.getElementById('leaveChart');
+    if (!ctx) return;
+
+    if (chartInstance) {
+      chartInstance.destroy();
+    }
+
+    const state = {
+      usedDays: 365,
+      remainingDays: 0
+    };
+
+    chartInstance = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ['通算休職日数', '残余休職日数'],
+        datasets: [{
+          data: [state.usedDays, state.remainingDays],
+          backgroundColor: [
+            '#1e293b', 
+            '#e2e8f0'  
+          ],
+          borderWidth: 0,
+          hoverOffset: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '75%',
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: {
+              font: {
+                family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+              }
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return context.label + ': 上限到達済';
+              }
+            }
+          }
+        }
+      },
+      plugins: [{
+        id: 'centerText',
+        beforeDraw: function(chart) {
+          var width = chart.width,
+              height = chart.height,
+              ctx = chart.ctx;
+
+          ctx.restore();
+          var fontSize = (height / 114).toFixed(2);
+          ctx.font = "bold " + fontSize + "em sans-serif";
+          ctx.textBaseline = "middle";
+          ctx.fillStyle = "#0f172a";
+
+          var text = "上限到達",
+              textX = Math.round((width - ctx.measureText(text).width) / 2),
+              textY = height / 2 - 10;
+
+          ctx.fillText(text, textX, textY);
+          
+          var text2 = "残枠 0日",
+              fontSize2 = (height / 180).toFixed(2);
+          ctx.font = fontSize2 + "em sans-serif";
+          ctx.fillStyle = "#64748b";
+          var text2X = Math.round((width - ctx.measureText(text2).width) / 2),
+              text2Y = height / 2 + 20;
+              
+          ctx.fillText(text2, text2X, text2Y);
+          ctx.save();
+        }
+      }]
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initApp);
+</script>
+</body>
+</html>
